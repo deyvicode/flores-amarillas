@@ -1,7 +1,7 @@
 /* ============================================================
    GALAXIA DE FLORES AMARILLAS
    Cómo personalizar:
-   - Nombre: pasa ?n=Ale en la URL (ej. index.html?n=Maria);
+   - Nombre: pasa ?n=Nombre en la URL (ej. index.html?n=Maria);
      si no se pasa, se usa CONFIG.nombreDefecto.
    - CONFIG.frases: agrega/edita mensajes cortos en español, usa
      "{nombre}" donde quieras que aparezca el nombre dinámico.

@@ -1,46 +1,59 @@
 /* ============================================================
-   GALAXIA DE FLORES AMARILLAS — para Ale
+   GALAXIA DE FLORES AMARILLAS
    Cómo personalizar:
-   - CONFIG.frases: agrega/edita mensajes cortos en español.
+   - Nombre: pasa ?n=Ale en la URL (ej. index.html?n=Maria);
+     si no se pasa, se usa CONFIG.nombreDefecto.
+   - CONFIG.frases: agrega/edita mensajes cortos en español, usa
+     "{nombre}" donde quieras que aparezca el nombre dinámico.
    - CONFIG.fotos: pon rutas ("assets/foto1.jpg", ...) si tienes
      fotos de ustedes; si el arreglo queda vacío se usan flores
      🌻🌼 flotantes en su lugar.
-   - CONFIG.musica: coloca un mp3 en assets/musica.mp3 (opcional,
-     si el archivo no existe simplemente no habrá música).
+   - CONFIG.musica: coloca un mp3/m4a en assets/ (opcional, si el
+     archivo no existe simplemente no habrá música).
    ============================================================ */
 
+function obtenerNombreDeURL(porDefecto) {
+  const params = new URLSearchParams(window.location.search);
+  const crudo = params.get("n");
+  if (!crudo) return porDefecto;
+  // Limita longitud y quita caracteres de control; el nombre solo se
+  // usa como texto (textContent / canvas), nunca como HTML.
+  const limpio = crudo.trim().slice(0, 30);
+  return limpio || porDefecto;
+}
+
 const CONFIG = {
-  nombre: "Ale",
+  nombreDefecto: "mi amor",
   titulo: "Feliz Día de las Flores Amarillas 🌻",
   frases: [
-    "🌻 Ale, contigo todo se ve más brillante",
+    "🌻 {nombre}, contigo todo se ve más brillante",
     "🌼 Como el girasol, siempre busco tu luz",
-    "🌻 Gracias por existir, Ale",
+    "🌻 Gracias por existir, {nombre}",
     "🌼 Hoy el amarillo lleva tu nombre",
     "🌻 Contigo hasta lo simple se vuelve especial",
-    "🌼 Ale, tu sonrisa es mi color favorito",
+    "🌼 {nombre}, tu sonrisa es mi color favorito",
     "🌻 Un campo entero de flores no alcanza para decirte todo",
     "🌼 21 de septiembre, pensando en ti",
     "🌻 Eres de esas personas que iluminan un día cualquiera",
-    "🌼 Quería sorprenderte con una pequeña galaxia, Ale",
+    "🌼 Quería sorprenderte con una pequeña galaxia, {nombre}",
     "🌻 Tu risa le hace bien a mis días",
     "🌼 Me gusta cómo se siente pensar en ti",
-    "🌻 Ale, ojalá esta flor te alcance el corazón",
+    "🌻 {nombre}, ojalá esta flor te alcance el corazón",
     "🌼 Contigo el tiempo pasa distinto, mejor",
     "🌻 Hoy quiero recordarte cuánto vales",
     "🌼 No hace falta una fecha para quererte así",
     "🌻 Eres mi lugar favorito últimamente",
-    "🌼 Ale, gracias por ser como eres",
+    "🌼 {nombre}, gracias por ser como eres",
     "🌻 Un girasol siempre mira hacia el sol; yo miro hacia ti",
     "🌼 Esta flor amarilla guarda un pedacito de cariño para ti",
     "🌻 Contigo todo pesa un poco menos",
     "🌼 Quería que supieras cuánto me importas",
-    "🌻 Ale, mereces flores todos los días",
+    "🌻 {nombre}, mereces flores todos los días",
     "🌼 El amarillo también sabe decir 'te quiero'",
     "🌻 Aquí siempre vas a tener un lugar",
-    "🌼 Feliz día de las flores amarillas, Ale",
+    "🌼 Feliz día de las flores amarillas, {nombre}",
     "🌻 Contigo aprendí que las cosas simples también brillan",
-    "🌼 Ale, tu cariño no pasa de moda",
+    "🌼 {nombre}, tu cariño no pasa de moda",
     "🌻 Un gracias que no necesita fecha ni motivo",
     "🌼 Esta pequeña galaxia es solo para ti",
   ],
@@ -48,9 +61,13 @@ const CONFIG = {
   musica: "assets/musica.m4a",
 };
 
+CONFIG.nombre = obtenerNombreDeURL(CONFIG.nombreDefecto);
+CONFIG.frases = CONFIG.frases.map((f) => f.replaceAll("{nombre}", CONFIG.nombre));
+
 /* ================= Referencias de UI ================= */
 document.getElementById("main-title").textContent = CONFIG.titulo;
 document.getElementById("sub-title").textContent = `Para ${CONFIG.nombre}, con cariño`;
+document.getElementById("start-subtitle").textContent = `Una pequeña galaxia amarilla te espera, ${CONFIG.nombre}...`;
 
 const audio = document.getElementById("audio");
 const musicBtn = document.getElementById("music-toggle");

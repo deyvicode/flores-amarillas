@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Feliz Día de las Flores Amarillas 🌻 Para Ale</title>
+<meta name="description" content="Una galaxia de flores amarillas para Ale, por el Día de las Flores Amarillas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <canvas id="c"></canvas>
+
+  <header id="main-header">
+    <h1 id="main-title">Feliz Día de las Flores Amarillas 🌻</h1>
+    <p id="sub-title">Para Ale, con cariño</p>
+  </header>
+
+  <button id="music-toggle" class="hidden" aria-label="Silenciar o activar música">🔊</button>
+
+  <div id="start-screen">
+    <div id="start-content">
+      <div class="flower-spin">🌻</div>
+      <h2>Feliz Día de las Flores Amarillas</h2>
+      <p>Una pequeña galaxia amarilla te espera, Ale...</p>
+      <span id="start-btn">Toca para iniciar</span>
+    </div>
+  </div>
+
+  <audio id="audio" loop preload="auto">
+    <source src="assets/musica.m4a" type="audio/mp4">
+  </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

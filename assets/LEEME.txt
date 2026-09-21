@@ -1,0 +1,12 @@
+Como agregar fotos o musica:
+
+1. Fotos (opcional):
+   - Copia tus fotos aqui, por ejemplo: foto1.jpg, foto2.jpg
+   - Abre js/main.js y en CONFIG.fotos agrega las rutas:
+     fotos: ["assets/foto1.jpg", "assets/foto2.jpg"]
+   - Si dejas el arreglo vacio, se muestran flores flotantes en su lugar.
+
+2. Musica (opcional):
+   - Copia un archivo mp3 aqui con el nombre: musica.mp3
+   - Si no agregas ningun archivo, la pagina funciona igual, solo sin musica
+     (el boton de sonido no aparece).
